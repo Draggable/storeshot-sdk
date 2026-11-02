@@ -12,9 +12,9 @@ import { inputPath } from '../scripts/inputs.mjs';
 
 const ROOT = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const consumer = process.argv[2] ?? path.join(ROOT, '.pack/consumer');
-const pkgDir = path.join(consumer, 'node_modules/@storeshot/sdk');
+const pkgDir = path.join(consumer, 'node_modules/@draggable/storeshot-sdk');
 
-const cjs = createRequire(path.join(consumer, 'index.js'))('@storeshot/sdk');
+const cjs = createRequire(path.join(consumer, 'index.js'))('@draggable/storeshot-sdk');
 const esm = await import(pathToFileURL(path.join(pkgDir, 'dist/esm/index.js')).href);
 assert.equal(typeof cjs.Storeshot, 'function');
 assert.equal(esm.SDK_VERSION, cjs.SDK_VERSION);

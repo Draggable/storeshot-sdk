@@ -1,5 +1,5 @@
 // SS-018 consumer fixture (module: nodenext, CommonJS): resolves the `require` types.
-import { Storeshot, StoreshotError, CONTRACT_VERSION } from '@storeshot/sdk';
+import { Storeshot, StoreshotError, CONTRACT_VERSION } from '@draggable/storeshot-sdk';
 
 async function main(): Promise<void> {
   const client = new Storeshot({ apiKey: 'ss_test_x', maxRetries: 1 });

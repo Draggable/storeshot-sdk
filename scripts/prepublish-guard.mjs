@@ -1,9 +1,10 @@
 #!/usr/bin/env node
-// `prepublishOnly` of @storeshot/sdk (SS-018 D7; mirror decision of 2026-11-02). The package is
-// published only by .github/workflows/publish.yml of the PUBLIC mirror Draggable/storeshot-sdk
-// (npm provenance needs a public repository; that workflow sets STORESHOT_SDK_PUBLISH=1), never
-// from the Storeshot monorepo or a laptop, and only under the Apache-2.0 licence with its LICENSE
-// and NOTICE files. Dry runs (`npm publish --dry-run`) are held to the same rules.
+// `prepublishOnly` of @draggable/storeshot-sdk (SS-018 D7; mirror decision of 2026-11-02). The
+// package is published only by .github/workflows/publish.yml of the PUBLIC mirror
+// Draggable/storeshot-sdk (npm provenance needs a public repository; that workflow sets
+// STORESHOT_SDK_PUBLISH=1), never from the Storeshot monorepo or a laptop, and only under the
+// Apache-2.0 licence with its LICENSE and NOTICE files. Dry runs (`npm publish --dry-run`) are held
+// to the same rules.
 import { existsSync, readFileSync } from 'node:fs';
 
 const MIRROR = 'Draggable/storeshot-sdk';
@@ -16,7 +17,7 @@ if (
   process.env.GITHUB_REPOSITORY !== MIRROR
 ) {
   problems.push(
-    `publishing @storeshot/sdk is only done by .github/workflows/publish.yml of ${MIRROR}`,
+    `publishing @draggable/storeshot-sdk is only done by .github/workflows/publish.yml of ${MIRROR}`,
   );
 }
 if (pkg.license !== 'Apache-2.0') {

@@ -1,9 +1,9 @@
 name: Publish
 
-# Publishes @storeshot/sdk to npm with provenance (npm only accepts provenance from a public
-# repository built on a GitHub-hosted runner). OFF until the repository variable
-# SDK_PUBLISH_ENABLED is 'true'; it also needs the NPM_TOKEN secret or npm trusted publishing for
-# this repository and workflow. Runs on a manual dispatch (dry run by default) or a pushed v* tag,
+# Publishes @draggable/storeshot-sdk to npm with provenance (npm only accepts provenance from a
+# public repository built on a GitHub-hosted runner). OFF until the repository variable
+# SDK_PUBLISH_ENABLED is 'true'; it authenticates with NPM_TOKEN, the Draggable organisation-level
+# Actions secret. Runs on a manual dispatch (dry run by default) or a pushed v* tag,
 # whose name must equal the package version. The prepublishOnly guard refuses any other context.
 on:
   workflow_dispatch:
@@ -24,7 +24,7 @@ permissions:
 
 jobs:
   publish:
-    name: Publish @storeshot/sdk
+    name: Publish @draggable/storeshot-sdk
     if: vars.SDK_PUBLISH_ENABLED == 'true' && github.repository == 'Draggable/storeshot-sdk'
     runs-on: ubuntu-latest
     timeout-minutes: 15
@@ -75,8 +75,8 @@ jobs:
         id: published
         run: |
           version=$(node -p "require('./package.json').version")
-          if [[ -n "$(npm view "@storeshot/sdk@$version" version 2>/dev/null || true)" ]]; then
-            echo "::notice::@storeshot/sdk@$version is already on npm."
+          if [[ -n "$(npm view "@draggable/storeshot-sdk@$version" version 2>/dev/null || true)" ]]; then
+            echo "::notice::@draggable/storeshot-sdk@$version is already on npm."
             echo "skip=true" >> "$GITHUB_OUTPUT"
           fi
 

@@ -20,3 +20,5 @@ Not published to npm yet; this heading takes the first published version.
   approval; a client created with `apiKey: null` needs no key for it.
 - ESM and CommonJS builds with TypeScript declarations, zero runtime dependencies, Node ≥ 18.
 - Apache License 2.0.
+- Published under the npm scope `@draggable` as `@draggable/storeshot-sdk` (renamed before any
+  publish; formerly `@storeshot/sdk`).

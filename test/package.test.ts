@@ -10,8 +10,8 @@ const pkg = read('../package.json');
 const APACHE_2_SHA256 = 'cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30';
 
 describe('package.json', () => {
-  it('is the (not yet published) @storeshot/sdk in lockstep with the Storeshot release', () => {
-    expect(pkg.name).toBe('@storeshot/sdk');
+  it('is the (not yet published) @draggable/storeshot-sdk in lockstep with the Storeshot release', () => {
+    expect(pkg.name).toBe('@draggable/storeshot-sdk');
     expect(pkg.version).toMatch(/^\d+\.\d+\.\d+$/);
     if (IN_MONOREPO) {
       const root = JSON.parse(readFileSync(monorepoPath('package.json'), 'utf8'));
@@ -42,7 +42,9 @@ describe('package.json', () => {
     const licence = readFileSync(path.join(SDK_ROOT, 'LICENSE'));
     expect(createHash('sha256').update(licence).digest('hex')).toBe(APACHE_2_SHA256);
     const notice = readFileSync(path.join(SDK_ROOT, 'NOTICE'), 'utf8');
-    expect(notice).toMatch(/^Storeshot TypeScript SDK \(@storeshot\/sdk\)\nCopyright 2026 \S/);
+    expect(notice).toMatch(
+      /^Storeshot TypeScript SDK \(@draggable\/storeshot-sdk\)\nCopyright 2026 \S/,
+    );
   });
 
   it('has zero runtime dependencies and exact devDependency pins', () => {

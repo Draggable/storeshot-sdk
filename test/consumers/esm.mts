@@ -1,6 +1,10 @@
 // SS-018 consumer fixture (module: nodenext, ESM, Node types, lib ES2022): typechecked against
 // the packed package by scripts/check-package.mjs.
-import Storeshot, { StoreshotError, verifyWebhookSignature, type Generation } from '@storeshot/sdk';
+import Storeshot, {
+  StoreshotError,
+  verifyWebhookSignature,
+  type Generation,
+} from '@draggable/storeshot-sdk';
 
 const client = new Storeshot({ apiKey: 'ss_test_x' });
 const generation: Generation = await client.generations.create(

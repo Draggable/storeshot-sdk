@@ -1,19 +1,19 @@
-# @storeshot/sdk
+# @draggable/storeshot-sdk
 
 The official TypeScript/JavaScript SDK for the [Storeshot API](https://storeshot.art/docs/): turn raw
 app screenshots into App Store and Google Play marketing images. Typed from the API contract
 (OpenAPI), zero runtime dependencies, runs on Node ≥ 18, Bun, Deno and edge runtimes.
 
-> **Not on npm yet.** `@storeshot/sdk` has not been published. Until it is, build a tarball from
+> **Not on npm yet.** `@draggable/storeshot-sdk` has not been published. Until it is, build a tarball from
 > this repository with `npm ci && npm run build && npm pack` and install that file
-> (`npm install ./storeshot-sdk-<version>.tgz`).
+> (`npm install ./draggable-storeshot-sdk-<version>.tgz`).
 
 ## Install
 
 Once published:
 
 ```sh
-npm install @storeshot/sdk
+npm install @draggable/storeshot-sdk
 ```
 
 Until then, install the tarball built from this repository (see the note above).
@@ -55,7 +55,7 @@ From one raw screenshot (`home.png`) to an App Store listing in fastlane's folde
 <!-- sdk-readme-example -->
 
 ```ts
-import { Storeshot } from '@storeshot/sdk';
+import { Storeshot } from '@draggable/storeshot-sdk';
 
 const storeshot = new Storeshot(); // reads STORESHOT_API_KEY
 const upload = await storeshot.uploads.create({ file: './home.png' });
@@ -125,7 +125,7 @@ Every failure is a `StoreshotError` (subclasses `StoreshotConnectionError`,
 `StoreshotTimeoutError`, `StoreshotWebhookError`):
 
 ```ts
-import { Storeshot, StoreshotError } from '@storeshot/sdk';
+import { Storeshot, StoreshotError } from '@draggable/storeshot-sdk';
 
 try {
   await storeshot.screenshotSets.create(body);
@@ -183,7 +183,7 @@ Register an `https://` endpoint with `storeshot.webhooks.create({ url, events })
 
 ```js
 import express from 'express';
-import { constructWebhookEvent } from '@storeshot/sdk';
+import { constructWebhookEvent } from '@draggable/storeshot-sdk';
 
 const app = express();
 app.post('/hooks/storeshot', express.raw({ type: 'application/json' }), async (req, res) => {
@@ -204,7 +204,7 @@ app.post('/hooks/storeshot', express.raw({ type: 'application/json' }), async (r
 On an edge runtime (Web Crypto only):
 
 ```ts
-import { verifyWebhookSignature } from '@storeshot/sdk';
+import { verifyWebhookSignature } from '@draggable/storeshot-sdk';
 
 export default {
   async fetch(request: Request, env: { STORESHOT_WEBHOOK_SECRET: string }) {

@@ -44,15 +44,15 @@ describe('README (D8, D9)', () => {
   it('says near the top that the package is not on npm yet, and how to use it meanwhile', () => {
     const top = README.split('\n').slice(0, 15).join('\n');
     expect(top).toMatch(/Not on npm yet/);
-    expect(top).toContain(IN_MONOREPO ? 'npm pack -w @storeshot/sdk' : 'npm pack');
-    expect(top).toContain('npm install ./storeshot-sdk-<version>.tgz');
+    expect(top).toContain(IN_MONOREPO ? 'npm pack -w @draggable/storeshot-sdk' : 'npm pack');
+    expect(top).toContain('npm install ./draggable-storeshot-sdk-<version>.tgz');
   });
 
   it('has one short main example that typechecks against the SDK', () => {
     const { code } = extractReadmeExample(README);
     const lines = code.split('\n').filter((line: string) => line.trim() !== '');
     expect(lines.length).toBeLessThanOrEqual(12);
-    expect(code).toContain("import { Storeshot } from '@storeshot/sdk';");
+    expect(code).toContain("import { Storeshot } from '@draggable/storeshot-sdk';");
     expect(code).toContain('new Storeshot()');
     expect(code).toContain('downloadArchive');
     mkdirSync(tmp.dir, { recursive: true });
@@ -73,7 +73,7 @@ describe('README (D8, D9)', () => {
         ),
       ],
       baseUrl: ROOT,
-      paths: { '@storeshot/sdk': ['src/index.ts'] },
+      paths: { '@draggable/storeshot-sdk': ['src/index.ts'] },
     });
     const diagnostics = ts
       .getPreEmitDiagnostics(program)

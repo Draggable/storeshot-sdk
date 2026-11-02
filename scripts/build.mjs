@@ -27,4 +27,4 @@ for (const format of ['esm', 'cjs']) {
     throw new Error(`dist/${format}/version.js: expected one ${PLACEHOLDER}, found ${count}`);
   writeFileSync(file, text.replace(PLACEHOLDER, JSON.stringify(version).replace(/"/g, "'")));
 }
-console.log(`built @storeshot/sdk ${version} (dist/esm, dist/cjs)`);
+console.log(`built @draggable/storeshot-sdk ${version} (dist/esm, dist/cjs)`);

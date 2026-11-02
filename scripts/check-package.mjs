@@ -1,8 +1,8 @@
 #!/usr/bin/env node
 // SS-018 §4: checks the package exactly as npm would publish it. `npm pack` (local, no registry)
-// into .pack/, exact file list, extract into .pack/consumer/node_modules/@storeshot/sdk, then
-// require() + import() in child processes, tsc on three consumer setups, and esbuild bundles for
-// the browser and a neutral (edge) platform. Needs `npm run build` first. `--keep` keeps .pack/.
+// into .pack/, exact file list, extract into .pack/consumer/node_modules/@draggable/storeshot-sdk,
+// then require() + import() in child processes, tsc on three consumer setups, and esbuild bundles
+// for the browser and a neutral (edge) platform. Needs `npm run build` first. `--keep` keeps .pack/.
 import { execFileSync } from 'node:child_process';
 import {
   copyFileSync,
@@ -29,7 +29,7 @@ const walk = (dir, base = dir) =>
       : [path.relative(base, file).split(path.sep).join('/')];
   });
 
-/** `npm pack` into `dest` and extract it into `dest/consumer/node_modules/@storeshot/sdk`. */
+/** `npm pack` into `dest` and extract it into `dest/consumer/node_modules/<package name>`. */
 export function packSdk(dest) {
   mkdirSync(dest, { recursive: true });
   const npm = process.env.npm_execpath;
@@ -40,7 +40,7 @@ export function packSdk(dest) {
     env: { ...process.env, npm_config_audit: 'false', npm_config_fund: 'false' },
   });
   const [info] = JSON.parse(out.slice(out.indexOf('[')));
-  const target = path.join(dest, 'consumer/node_modules/@storeshot/sdk');
+  const target = path.join(dest, 'consumer/node_modules/@draggable/storeshot-sdk');
   rmSync(target, { recursive: true, force: true });
   mkdirSync(target, { recursive: true });
   execFileSync('tar', [
@@ -101,14 +101,14 @@ async function main() {
     const cjs = JSON.parse(
       node([
         '-e',
-        "const m=require('@storeshot/sdk');console.log(JSON.stringify({k:Object.keys(m).sort(),v:m.SDK_VERSION,c:m.CONTRACT_VERSION,d:m.default===m.Storeshot}))",
+        "const m=require('@draggable/storeshot-sdk');console.log(JSON.stringify({k:Object.keys(m).sort(),v:m.SDK_VERSION,c:m.CONTRACT_VERSION,d:m.default===m.Storeshot}))",
       ]),
     );
     const esm = JSON.parse(
       node([
         '--input-type=module',
         '-e',
-        "const m=await import('@storeshot/sdk');console.log(JSON.stringify({k:Object.keys(m).sort(),v:m.SDK_VERSION,c:m.CONTRACT_VERSION,d:m.default===m.Storeshot}))",
+        "const m=await import('@draggable/storeshot-sdk');console.log(JSON.stringify({k:Object.keys(m).sort(),v:m.SDK_VERSION,c:m.CONTRACT_VERSION,d:m.default===m.Storeshot}))",
       ]),
     );
     if (JSON.stringify(cjs) !== JSON.stringify(esm))
