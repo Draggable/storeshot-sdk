@@ -1,0 +1,56 @@
+name: CI
+
+# Every check of the package on each push to main and each pull request: generated types match the
+# contract, typecheck, unit and contract tests, the ESM/CommonJS build, the package exactly as npm
+# would publish it, and the packed package on Node 18 (the oldest supported version).
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  test:
+    name: Generate check, typecheck, tests, build, package, Node 18
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: '24'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Generated types match contract/openapi.json (deterministic)
+        run: npm run generate -- --check
+
+      - name: Typecheck
+        run: npm run typecheck
+
+      - name: Unit and contract tests (Vitest)
+        run: npm test
+
+      - name: Build (ESM + CommonJS)
+        run: npm run build
+
+      - name: Package check (npm pack file list, require/import, consumer types, bundles)
+        run: npm run check:package -- --keep
+
+      - name: Setup Node.js 18
+        uses: actions/setup-node@v4
+        with:
+          node-version: '18'
+
+      - name: Node 18 smoke (packed package)
+        run: node test-dist/node18-smoke.mjs

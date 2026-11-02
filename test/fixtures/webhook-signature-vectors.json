@@ -1,0 +1,42 @@
+{
+  "//": "SS-018: webhook signature vectors for packages/sdk. Every header is pinned to the real signer (signatureHeader) by __tests__/sdk/webhookVectors.test.ts.",
+  "vectors": [
+    {
+      "name": "plain",
+      "secrets": [
+        "whsec_NEWsecretNEWsecretNEWsecretNEWsecret123"
+      ],
+      "timestamp": 1792663200,
+      "bodyBase64": "eyJpZCI6ImV2dF8wMTIzNDU2Nzg5YWJjZGVmMDEyMzQ1Njc4OWFiY2RlZiIsInR5cGUiOiJnZW5lcmF0aW9uLnN1Y2NlZWRlZCIsImNyZWF0ZWQiOiIyMDI2LTEwLTIyVDEwOjAwOjAwLjAwMFoiLCJlbnZpcm9ubWVudCI6InRlc3QiLCJhcGlWZXJzaW9uIjoiMS4xNi4wIiwiZGF0YSI6eyJpZCI6ImcxIiwiYXBwIjp7Im5hbWUiOiJUcsOkbGxtYXRlIOKckyJ9fX0=",
+      "header": "t=1792663200,v1=dfee2ce4613f976938894822ec9549a4dc8fa17512b0e5d6cf6812a1a84a56ae"
+    },
+    {
+      "name": "rotation",
+      "secrets": [
+        "whsec_NEWsecretNEWsecretNEWsecretNEWsecret123",
+        "whsec_OLDsecretOLDsecretOLDsecretOLDsecret456"
+      ],
+      "timestamp": 1792663200,
+      "bodyBase64": "eyJpZCI6ImV2dF8wMTIzNDU2Nzg5YWJjZGVmMDEyMzQ1Njc4OWFiY2RlZiIsInR5cGUiOiJnZW5lcmF0aW9uLnN1Y2NlZWRlZCIsImNyZWF0ZWQiOiIyMDI2LTEwLTIyVDEwOjAwOjAwLjAwMFoiLCJlbnZpcm9ubWVudCI6InRlc3QiLCJhcGlWZXJzaW9uIjoiMS4xNi4wIiwiZGF0YSI6eyJpZCI6ImcxIiwiYXBwIjp7Im5hbWUiOiJUcsOkbGxtYXRlIOKckyJ9fX0=",
+      "header": "t=1792663200,v1=dfee2ce4613f976938894822ec9549a4dc8fa17512b0e5d6cf6812a1a84a56ae,v1=8dfc601d1ae6a771089ba7a0a79714b765da0b1adce4bca98d7c29b4e01de23f"
+    },
+    {
+      "name": "empty-object",
+      "secrets": [
+        "whsec_NEWsecretNEWsecretNEWsecretNEWsecret123"
+      ],
+      "timestamp": 1792663200,
+      "bodyBase64": "e30=",
+      "header": "t=1792663200,v1=65c079f04d699f0abc7c057dd9ed00f9fe1f8b44f19c4019f7bd9e5c7ac4d348"
+    },
+    {
+      "name": "test-event",
+      "secrets": [
+        "whsec_OLDsecretOLDsecretOLDsecretOLDsecret456"
+      ],
+      "timestamp": 1793610000,
+      "bodyBase64": "eyJpZCI6ImV2dF9mZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZmZiIsInR5cGUiOiJ3ZWJob29rLnRlc3QiLCJjcmVhdGVkIjoiMjAyNi0xMS0wMlQwOTowMDowMC4wMDBaIiwiZW52aXJvbm1lbnQiOiJsaXZlIiwiYXBpVmVyc2lvbiI6IjEuMTYuMCIsImRhdGEiOnsid2ViaG9va0lkIjoiNmYxYzFmMGUtOGE1ZS00YjhlLTlhNTEtMGYwZTFkMmMzYjRhIiwibWVzc2FnZSI6IlRlc3QgZXZlbnQgZnJvbSBTdG9yZXNob3QuIn19",
+      "header": "t=1793610000,v1=f16b2c0b4ffae908338e7ffdaa2dc7e367ba8e5851881d136e5d2778650d96dd"
+    }
+  ]
+}
