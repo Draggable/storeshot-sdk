@@ -41,11 +41,12 @@ describe('README (D8, D9)', () => {
     expect(found).toEqual(IN_MONOREPO ? HEADINGS : [...HEADINGS, 'Source of truth']);
   });
 
-  it('says near the top that the package is not on npm yet, and how to use it meanwhile', () => {
-    const top = README.split('\n').slice(0, 15).join('\n');
-    expect(top).toMatch(/Not on npm yet/);
-    expect(top).toContain(IN_MONOREPO ? 'npm pack -w @draggable/storeshot-sdk' : 'npm pack');
-    expect(top).toContain('npm install ./draggable-storeshot-sdk-<version>.tgz');
+  it('installs from npm, with a monorepo note here and the provenance note in the mirror', () => {
+    const install = README.split('\n## Install\n')[1].split('\n## ')[0];
+    expect(install).toContain('```sh\nnpm install @draggable/storeshot-sdk\n```');
+    const top = README.split('\n## Install\n')[0];
+    expect(top).toContain(IN_MONOREPO ? 'npm run build -w @draggable/storeshot-sdk' : 'provenance');
+    expect(README).not.toMatch(/not on npm|not (yet )?published|once published|\.tgz/i);
   });
 
   it('has one short main example that typechecks against the SDK', () => {
@@ -108,10 +109,10 @@ describe('README (D8, D9)', () => {
     }
   });
 
-  it('starts the changelog with the unreleased first version of this contract', () => {
+  it('starts the changelog with a published version of this contract', () => {
     expect(CHANGELOG).toMatch(
       new RegExp(
-        `^# Changelog\\n\\n## Unreleased — first version \\(contract ${CONTRACT_VERSION.replace(/\./g, '\\.')}\\)\\n`,
+        `^# Changelog\\n\\n## \\d+\\.\\d+\\.\\d+ — .*\\(contract ${CONTRACT_VERSION.replace(/\./g, '\\.')}\\)`,
       ),
     );
   });

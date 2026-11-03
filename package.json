@@ -1,6 +1,6 @@
 {
   "name": "@draggable/storeshot-sdk",
-  "version": "2.53.0",
+  "version": "2.55.0",
   "description": "Official TypeScript/JavaScript SDK for the Storeshot API: App Store and Google Play marketing screenshots from raw app screenshots.",
   "keywords": [
     "storeshot",

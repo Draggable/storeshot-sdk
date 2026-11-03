@@ -4,19 +4,14 @@ The official TypeScript/JavaScript SDK for the [Storeshot API](https://storeshot
 app screenshots into App Store and Google Play marketing images. Typed from the API contract
 (OpenAPI), zero runtime dependencies, runs on Node ≥ 18, Bun, Deno and edge runtimes.
 
-> **Not on npm yet.** `@draggable/storeshot-sdk` has not been published. Until it is, build a tarball from
-> this repository with `npm ci && npm run build && npm pack` and install that file
-> (`npm install ./draggable-storeshot-sdk-<version>.tgz`).
+> Published on npm with provenance from its public source repository, `Draggable/storeshot-sdk`
+> on GitHub.
 
 ## Install
-
-Once published:
 
 ```sh
 npm install @draggable/storeshot-sdk
 ```
-
-Until then, install the tarball built from this repository (see the note above).
 
 ## API key
 
@@ -335,8 +330,8 @@ the contents of this repository with one commit tagged `vX.Y.Z`.
 Issues and pull requests are welcome here. Accepted changes are applied upstream and arrive with
 the next release, so a pull request is closed rather than merged.
 
-The package is not on npm yet. `.github/workflows/publish.yml` publishes it (with npm provenance)
-once it is switched on.
+Every `vX.Y.Z` tag pushed here is published to npm (with npm provenance) by
+`.github/workflows/publish.yml`.
 
 ### Development and tests
 

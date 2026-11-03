@@ -10,7 +10,7 @@ const pkg = read('../package.json');
 const APACHE_2_SHA256 = 'cfc7749b96f63bd31c3c42b5c471bf756814053e847c10f3eb003417bc523d30';
 
 describe('package.json', () => {
-  it('is the (not yet published) @draggable/storeshot-sdk in lockstep with the Storeshot release', () => {
+  it('is @draggable/storeshot-sdk in lockstep with the Storeshot release', () => {
     expect(pkg.name).toBe('@draggable/storeshot-sdk');
     expect(pkg.version).toMatch(/^\d+\.\d+\.\d+$/);
     if (IN_MONOREPO) {

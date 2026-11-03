@@ -1,8 +1,8 @@
 # Changelog
 
-## Unreleased — first version (contract 1.17.0)
+## 2.53.0 — first published version (contract 1.17.0), 2026-11-02
 
-Not published to npm yet; this heading takes the first published version.
+Published to npm with provenance from the public repository `Draggable/storeshot-sdk`.
 
 - Typed client for every operation of the Storeshot API contract 1.17.0 (58 operations), with
   types generated from the OpenAPI document.
